@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atelier Aurum — Manicure & Pedicure Warszawa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Newsreader:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --gold:#a9824c;
+    --gold-dark:#7e5f37;
+    --cream:#faf6ef;
+    --ivory:#fffdf9;
+    --ink:#26211c;
+    --ink-soft:#665c52;
+    --line:#e3dac9;
+    --radius:6px;
+    --maxw:1180px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Newsreader',Georgia,'Times New Roman',serif;
+    color:var(--ink);
+    background:var(--cream);
+    line-height:1.7;
+    overflow-x:hidden;
+    font-size:17px;
+  }
+  h1,h2,h3,.logo{font-family:'Marcellus',Georgia,serif;}
+  img{max-width:100%;display:block;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
+  .btn{
+    display:inline-block;
+    padding:13px 32px;
+    border-radius:var(--radius);
+    font-weight:600;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    font-size:.78rem;
+    cursor:pointer;
+    border:1px solid transparent;
+    transition:background .2s ease, color .2s ease, border-color .2s ease;
+    font-family:'Newsreader',Georgia,serif;
+  }
+  .btn-primary{background:var(--gold);color:#fff;border-color:var(--gold);}
+  .btn-primary:hover{background:var(--gold-dark);border-color:var(--gold-dark);}
+  .btn-ghost{border-color:var(--ink);color:var(--ink);}
+  .btn-ghost:hover{background:var(--ink);color:#fff;}
+  .btn-light{border-color:#fff;color:#fff;}
+  .btn-light:hover{background:#fff;color:var(--gold-dark);}
+
+  /* TOP BAR */
+  .gold-strip{height:3px;background:linear-gradient(90deg,var(--gold-dark),var(--gold),var(--gold-dark));}
+  .topbar{
+    background:var(--ink);
+    color:#d9cdb8;
+    font-size:.76rem;
+    padding:9px 0;
+    letter-spacing:.06em;
+  }
+  .topbar .wrap{display:flex;justify-content:center;align-items:center;gap:18px;flex-wrap:wrap;}
+  .status-dot{display:inline-flex;align-items:center;gap:6px;color:#c9e8c2;font-weight:600;}
+  .status-dot::before{
+    content:"";width:7px;height:7px;border-radius:50%;background:#7fc46c;
+    box-shadow:0 0 0 0 rgba(127,196,108,.6);animation:pulse 2s infinite;
+  }
+  @keyframes pulse{
+    0%{box-shadow:0 0 0 0 rgba(127,196,108,.55);}
+    70%{box-shadow:0 0 0 6px rgba(127,196,108,0);}
+    100%{box-shadow:0 0 0 0 rgba(127,196,108,0);}
+  }
+
+  /* NAV */
+  header{
+    position:sticky;top:0;z-index:200;
+    background:var(--ivory);
+    border-bottom:1px solid var(--line);
+    transition:box-shadow .25s ease;
+  }
+  header.scrolled{box-shadow:0 8px 24px -16px rgba(38,33,28,.25);}
+  .nav-top{
+    position:relative;display:flex;align-items:center;justify-content:space-between;
+    max-width:var(--maxw);margin:0 auto;padding:16px 24px;gap:16px;min-height:28px;
+  }
+  .nav-contact{font-size:.84rem;color:var(--ink-soft);letter-spacing:.02em;display:flex;align-items:center;gap:6px;flex:1;}
+  .nav-contact a{border-bottom:1px solid transparent;}
+  .nav-contact a:hover{border-color:var(--gold);}
+  .logo{
+    position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+    font-size:1.5rem;font-weight:700;letter-spacing:.03em;text-align:center;
+    display:flex;align-items:center;justify-content:center;gap:8px;white-space:nowrap;
+  }
+  .logo::before,.logo::after{content:"";width:18px;height:1px;background:var(--gold);flex-shrink:0;}
+  .logo span{color:var(--gold-dark);font-style:italic;}
+  .nav-right{display:flex;align-items:center;justify-content:flex-end;gap:18px;flex:1;}
+  .burger{
+    display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:6px;z-index:310;position:relative;
+  }
+  .burger span{width:24px;height:2px;background:var(--ink);transition:.25s;}
+  .burger.active span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .burger.active span:nth-child(2){opacity:0;}
+  .burger.active span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+  .nav-bottom{border-top:1px solid var(--line);}
+  .nav-links{
+    display:flex;gap:40px;align-items:center;justify-content:center;
+    max-width:var(--maxw);margin:0 auto;padding:0 24px;
+  }
+  .nav-links a{
+    position:relative;display:block;padding:15px 0;font-size:.82rem;font-weight:500;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--ink-soft);
+    transition:color .2s;
+  }
+  .nav-links a::after{
+    content:"";position:absolute;left:50%;bottom:10px;width:0;height:2px;background:var(--gold);
+    transition:width .25s ease, left .25s ease;
+  }
+  .nav-links a:hover{color:var(--gold-dark);}
+  .nav-links a:hover::after{width:100%;left:0;}
+  .nav-links a.active{color:var(--ink);}
+  .nav-links a.active::after{width:100%;left:0;}
+
+  .nav-backdrop{
+    position:fixed;inset:0;background:rgba(38,33,28,.45);z-index:290;
+    opacity:0;visibility:hidden;transition:opacity .25s ease;
+  }
+  .nav-backdrop.open{opacity:1;visibility:visible;}
+  .mobile-panel{display:none;}
+
+  /* HERO */
+  .hero{
+    position:relative;
+    background:linear-gradient(180deg,var(--ivory) 0%, var(--cream) 100%);
+    padding:80px 0 70px;
+    border-bottom:1px solid var(--line);
+  }
+  .hero-grid{
+    display:grid;grid-template-columns:1.05fr .95fr;gap:60px;align-items:center;
+  }
+  .eyebrow{
+    text-transform:uppercase;letter-spacing:.22em;font-size:.74rem;font-weight:600;color:var(--gold-dark);margin-bottom:16px;
+  }
+  .hero h1{
+    font-size:clamp(2rem,4vw,3.2rem);
+    font-weight:700;line-height:1.18;margin-bottom:22px;
+  }
+  .hero h1 em{font-style:italic;color:var(--gold-dark);}
+  .hero p.lead{color:var(--ink-soft);font-size:1.1rem;max-width:520px;margin-bottom:32px;}
+  .hero-actions{display:flex;gap:16px;flex-wrap:wrap;}
+  .hero-stats{display:flex;gap:40px;margin-top:44px;flex-wrap:wrap;}
+  .hero-stats div{font-family:'Marcellus',serif;font-size:1.7rem;font-weight:700;color:var(--gold-dark);}
+  .hero-stats small{display:block;font-size:.72rem;color:var(--ink-soft);font-weight:600;text-transform:uppercase;letter-spacing:.08em;font-family:'Newsreader',serif;}
+  .hero-img{
+    position:relative;border:1px solid var(--line);aspect-ratio:4/5;
+    background:linear-gradient(150deg,#f3ead9,#d9c6a3);
+  }
+  .hero-img .ph{
+    position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    font-size:5rem;filter:grayscale(.2) opacity(.85);
+  }
+  .hero-badge{
+    position:absolute;bottom:0;left:0;background:var(--ink);color:#fff;padding:14px 22px;
+    font-size:.78rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;
+  }
+
+  /* SECTION HEADINGS */
+  .section{padding:80px 0;}
+  .section-head{text-align:center;max-width:640px;margin:0 auto 54px;}
+  .section-head .eyebrow{justify-content:center;display:flex;}
+  .section-head h2{font-size:clamp(1.7rem,3vw,2.3rem);font-weight:700;margin-bottom:18px;}
+  .section-head p{color:var(--ink-soft);}
+  .alt{background:var(--ivory);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+
+  .ornament{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:18px;}
+  .ornament span{width:46px;height:1px;background:var(--line);}
+  .ornament i{width:6px;height:6px;border-radius:50%;background:var(--gold);transform:rotate(45deg);}
+
+  /* SCROLL REVEAL */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease, transform .7s ease;}
+  .reveal.in-view{opacity:1;transform:translateY(0);}
+
+  /* SERVICES */
+  .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line);}
+  .service-card{
+    background:var(--ivory);border:1px solid var(--line);margin:-1px 0 0 -1px;
+    transition:box-shadow .25s ease;
+    display:flex;flex-direction:column;
+  }
+  .alt .service-card{background:var(--cream);}
+  .service-card:hover{box-shadow:0 18px 36px -20px rgba(38,33,28,.3);position:relative;z-index:1;}
+  .service-img{position:relative;aspect-ratio:4/3;overflow:hidden;background:var(--line);}
+  .service-img img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.92);transition:transform .4s ease;}
+  .service-card:hover .service-img img{transform:scale(1.06);}
+  .service-body{padding:28px 30px;display:flex;flex-direction:column;gap:14px;flex-grow:1;}
+  .service-card h3{font-size:1.18rem;font-weight:700;}
+  .service-card p{color:var(--ink-soft);font-size:.94rem;flex-grow:1;}
+  .service-card ul{list-style:none;font-size:.9rem;color:var(--ink-soft);display:flex;flex-direction:column;gap:8px;}
+  .service-card ul li{display:flex;justify-content:space-between;gap:10px;border-top:1px solid var(--line);padding-top:8px;}
+  .service-card ul li span:last-child{font-weight:600;color:var(--gold-dark);font-family:'Marcellus',serif;}
+  .service-card .tag{
+    position:absolute;top:14px;left:14px;font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;
+    color:#fff;background:var(--gold-dark);padding:5px 12px;z-index:1;
+  }
+
+  /* WHY US */
+  .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line);}
+  .why-card{text-align:center;padding:38px 24px;background:var(--ivory);border:1px solid var(--line);margin:-1px 0 0 -1px;}
+  .why-card .num{
+    width:44px;height:44px;border:1px solid var(--gold);color:var(--gold-dark);font-family:'Marcellus',serif;
+    display:flex;align-items:center;justify-content:center;font-weight:700;margin:0 auto 18px;
+  }
+  .why-card h3{font-size:1.05rem;font-weight:700;margin-bottom:8px;}
+  .why-card p{color:var(--ink-soft);font-size:.9rem;}
+
+  /* TESTIMONIALS */
+  .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
+  .testi-card{
+    background:var(--ivory);border:1px solid var(--line);padding:32px 28px;
+    display:flex;flex-direction:column;gap:16px;position:relative;
+  }
+  .testi-quote{font-family:'Marcellus',serif;font-size:3rem;color:var(--gold);line-height:1;height:30px;}
+  .testi-card p.testi-text{color:var(--ink-soft);font-size:.96rem;flex-grow:1;font-style:italic;}
+  .testi-stars{color:var(--gold);font-size:.85rem;letter-spacing:.15em;}
+  .testi-name{font-weight:600;font-size:.92rem;border-top:1px solid var(--line);padding-top:14px;}
+  .testi-name span{display:block;font-weight:400;color:var(--ink-soft);font-size:.82rem;font-style:normal;}
+
+  /* GALLERY */
+  .gallery-grid{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--line);
+  }
+  .gallery-grid div{
+    aspect-ratio:1;display:flex;align-items:center;justify-content:center;
+    font-size:2rem;color:#fff;font-weight:700;background:var(--gold);
+  }
+  .g1{background:#c9a36c;}
+  .g2{background:#b8915a;}
+  .g3{background:#d9bd8c;}
+  .g4{background:#8a6a3c;}
+  .g5{background:#a9824c;}
+  .g6{background:#7e5f37;}
+  .g7{background:#e0c79b;}
+  .g8{background:#967446;}
+
+  /* PRICING */
+  .price-table{width:100%;border-collapse:collapse;background:var(--ivory);border:1px solid var(--line);}
+  .price-table th,.price-table td{padding:16px 24px;text-align:left;border-bottom:1px solid var(--line);}
+  .price-table th{background:var(--ink);color:#fff;font-weight:600;font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;}
+  .price-table tr:last-child td{border-bottom:none;}
+  .price-table td:last-child{font-weight:700;color:var(--gold-dark);white-space:nowrap;font-family:'Marcellus',serif;}
+  .price-note{text-align:center;color:var(--ink-soft);margin-top:24px;font-size:.9rem;}
+
+  /* CTA BANNER */
+  .cta-banner{
+    background:var(--ink);
+    border:1px solid var(--gold);padding:64px 40px;text-align:center;color:#fff;
+  }
+  .cta-banner h2{font-size:clamp(1.5rem,3vw,2.1rem);font-weight:700;margin-bottom:14px;}
+  .cta-banner p{opacity:.85;margin-bottom:28px;color:#d9cdb8;}
+
+  /* FOOTER */
+  footer{background:var(--ink);color:#cfc2ad;padding:60px 0 0;border-top:3px solid var(--gold);}
+  .footer-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:40px;padding-bottom:40px;}
+  .footer-grid h4{font-family:'Marcellus',serif;font-size:1.05rem;font-weight:700;margin-bottom:16px;color:#fff;}
+  .footer-grid p, .footer-grid a{font-size:.9rem;color:#b8aa92;line-height:1.9;}
+  .footer-grid a:hover{color:var(--gold);}
+  .footer-social{display:flex;gap:12px;margin-top:14px;}
+  .footer-social a{
+    width:38px;height:38px;border-radius:50%;border:1px solid #4a4039;
+    display:flex;align-items:center;justify-content:center;font-size:.95rem;
+  }
+  .footer-social a:hover{background:var(--gold);border-color:var(--gold);color:#fff;}
+  .footer-bottom{
+    border-top:1px solid #443c33;padding:18px 0;text-align:center;font-size:.8rem;color:#8c7f6c;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width:1024px){
+    .services-grid{grid-template-columns:repeat(2,1fr);}
+    .why-grid{grid-template-columns:repeat(2,1fr);}
+    .testi-grid{grid-template-columns:repeat(2,1fr);}
+  }
+  @media (max-width:900px){
+    .hero-grid{grid-template-columns:1fr;}
+    .hero-img{max-width:420px;margin:0 auto;order:-1;}
+    .gallery-grid{grid-template-columns:repeat(3,1fr);}
+    .footer-grid{grid-template-columns:1fr 1fr;}
+    .nav-contact{display:none;}
+  }
+  @media (max-width:860px){
+    .nav-bottom{display:none;}
+    .burger{display:flex;}
+    .mobile-panel{
+      position:fixed;top:0;right:0;height:100%;width:min(320px,80vw);background:var(--ivory);
+      border-left:1px solid var(--line);overflow-y:auto;z-index:300;
+      transform:translateX(100%);transition:transform .3s ease;
+      box-shadow:-12px 0 30px -10px rgba(0,0,0,.2);
+      display:flex;flex-direction:column;
+    }
+    .panel-head{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:20px 24px;border-bottom:1px solid var(--line);
+    }
+    .panel-head .logo{font-size:1.2rem;}
+    .panel-head .logo::before,.panel-head .logo::after{display:none;}
+    .panel-close{background:none;border:none;font-size:1.6rem;line-height:1;color:var(--ink-soft);cursor:pointer;padding:4px 8px;}
+    .panel-close:hover{color:var(--gold-dark);}
+    .mobile-panel a{
+      display:block;padding:18px 28px;font-size:.82rem;font-weight:500;letter-spacing:.08em;
+      border-top:1px solid var(--line);color:var(--ink-soft);text-transform:uppercase;
+    }
+    .mobile-panel a.active{color:var(--gold-dark);}
+    .mobile-panel .panel-cta{padding:24px 28px;border-top:1px solid var(--line);margin-top:auto;}
+    .mobile-panel .panel-cta .btn{width:100%;text-align:center;}
+  }
+  @media (max-width:680px){
+    .services-grid{grid-template-columns:1fr;}
+    .why-grid{grid-template-columns:1fr;}
+    .testi-grid{grid-template-columns:1fr;}
+    .gallery-grid{grid-template-columns:repeat(2,1fr);}
+    .hero-stats{gap:24px;}
+    .nav-right .btn-ghost{display:none;}
+    body{font-size:16px;}
+  }
+  @media (max-width:560px){
+    .topbar .wrap{flex-direction:column;gap:2px;}
+    .nav-top{padding:14px 18px;}
+    .logo{font-size:1.2rem;}
+    .price-table{display:block;overflow-x:auto;white-space:nowrap;}
+    .footer-grid{grid-template-columns:1fr;text-align:center;}
+    .footer-social{justify-content:center;}
+    .section{padding:60px 0;}
+    .cta-banner{padding:46px 24px;}
+  }
+  @media (max-width:420px){
+    .gallery-grid{grid-template-columns:repeat(2,1fr);}
+    .hero-actions{flex-direction:column;}
+    .hero-actions .btn{text-align:center;}
+  }
+</style>
+</head>
+<body>
+
+<div class="gold-strip"></div>
+<div class="topbar">
+  <div class="wrap">
+    <span class="status-dot">Otwarte teraz</span>
+    <span>PON: 10–18 &nbsp;·&nbsp; WT–PT: 10–20 &nbsp;·&nbsp; SOB: 8–15</span>
+  </div>
+</div>
+
+<header>
+  <div class="nav-top">
+    <div class="nav-contact">ul. Kwiatowa 12, Warszawa &nbsp;·&nbsp; 726 363 077</div>
+    <a href="#top" class="logo">Atelier <span>Aurum</span></a>
+    <div class="nav-right">
+      <a href="#kontakt" class="btn btn-ghost">Zapisz się</a>
+      <button class="burger" id="burgerBtn" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <div class="nav-bottom">
+    <div class="nav-links">
+      <a href="#oferta">Oferta</a>
+      <a href="#dlaczego">Dlaczego my</a>
+      <a href="#opinie">Opinie</a>
+      <a href="#galeria">Galeria</a>
+      <a href="#cennik">Cennik</a>
+      <a href="#kontakt">Kontakt</a>
+    </div>
+  </div>
+  <div class="mobile-panel" id="mobilePanel">
+    <div class="panel-head">
+      <span class="logo">Atelier <span>Aurum</span></span>
+      <button class="panel-close" id="panelClose" aria-label="Zamknij menu">&times;</button>
+    </div>
+    <a href="#oferta">Oferta</a>
+    <a href="#dlaczego">Dlaczego my</a>
+    <a href="#opinie">Opinie</a>
+    <a href="#galeria">Galeria</a>
+    <a href="#cennik">Cennik</a>
+    <a href="#kontakt">Kontakt</a>
+    <div class="panel-cta"><a href="#kontakt" class="btn btn-primary">Zapisz się</a></div>
+  </div>
+  <div class="nav-backdrop" id="navBackdrop"></div>
+</header>
+
+<section class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">Manicure • Pedicure • Warszawa</div>
+      <h1>Twoje paznokcie zasługują na <em>chwilę dla siebie</em></h1>
+      <p class="lead">Indywidualne podejście, precyzja w każdym detalu i trwałe efekty. Od klasyki po nowoczesne zdobienia — zadbamy o Twoje dłonie i stopy w spokojnej, eleganckiej atmosferze.</p>
+      <div class="hero-actions">
+        <a href="#kontakt" class="btn btn-primary">Zarezerwuj wizytę</a>
+        <a href="#cennik" class="btn btn-ghost">Zobacz cennik</a>
+      </div>
+      <div class="hero-stats">
+        <div>8<small>lat doświadczenia</small></div>
+        <div>3200+<small>zadowolonych klientek</small></div>
+        <div>4.9★<small>średnia ocena</small></div>
+      </div>
+    </div>
+    <div class="hero-img">
+      <div class="ph">💅</div>
+      <div class="hero-badge">Termin dziś od 14:00</div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="oferta">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="ornament"><span></span><i></i><span></span></div>
+      <div class="eyebrow">Oferta</div>
+      <h2>Manicure i Pedicure</h2>
+      <p>Wybierz zabieg dopasowany do Twoich potrzeb — od szybkiego odświeżenia po pełną pielęgnację.</p>
+    </div>
+    <div class="services-grid">
+
+      <div class="service-card reveal">
+        <div class="service-img">
+          <span class="tag">Bestseller</span>
+          <img src="https://loremflickr.com/600/450/manicure,polish?lock=11" alt="Manicure hybrydowy" loading="lazy">
+        </div>
+        <div class="service-body">
+          <h3>Manicure hybrydowy</h3>
+          <p>Trwały kolor utrzymujący się do 3 tygodni, precyzyjne opracowanie skórek i wybór z ponad 200 odcieni.</p>
+          <ul>
+            <li><span>Hybryda klasyczna</span><span>90 zł</span></li>
+            <li><span>Hybryda + zdobienia</span><span>120 zł</span></li>
+            <li><span>Przedłużanie żelem</span><span>160 zł</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-img">
+          <img src="https://loremflickr.com/600/450/handcare,nails?lock=22" alt="Manicure męski" loading="lazy">
+        </div>
+        <div class="service-body">
+          <h3>Manicure męski</h3>
+          <p>Skrócenie, opracowanie skórek i baz odżywczych — estetyczny efekt bez lakieru, w komfortowym tempie.</p>
+          <ul>
+            <li><span>Manicure męski</span><span>70 zł</span></li>
+            <li><span>+ parafina</span><span>90 zł</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-img">
+          <img src="https://loremflickr.com/600/450/nailcare,beauty?lock=33" alt="Manicure klasyczny" loading="lazy">
+        </div>
+        <div class="service-body">
+          <h3>Manicure klasyczny</h3>
+          <p>Tradycyjna pielęgnacja paznokci z bazą odżywczą lub kolorowym lakierem klasycznym.</p>
+          <ul>
+            <li><span>Z lakierem zwykłym</span><span>60 zł</span></li>
+            <li><span>Z odżywką</span><span>50 zł</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-img">
+          <span class="tag">Dla wymagających</span>
+          <img src="https://loremflickr.com/600/450/spa,hands?lock=44" alt="Manicure japoński" loading="lazy">
+        </div>
+        <div class="service-body">
+          <h3>Manicure japoński</h3>
+          <p>Naturalna pasta z minerałów wzmacnia i odbudowuje słabe, łamliwe paznokcie, dodając im zdrowego blasku.</p>
+          <ul>
+            <li><span>Zabieg japoński</span><span>110 zł</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-img">
+          <img src="https://loremflickr.com/600/450/gelnails,manicure?lock=55" alt="Manicure żelowy" loading="lazy">
+        </div>
+        <div class="service-body">
+          <h3>Manicure żelowy</h3>
+          <p>Przedłużanie i wzmacnianie naturalnej płytki żelem — mocne, estetyczne paznokcie na dłużej.</p>
+          <ul>
+            <li><span>Przedłużanie</span><span>160 zł</span></li>
+            <li><span>Uzupełnienie</span><span>130 zł</span></li>
+            <li><span>Usunięcie</span><span>40 zł</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-img">
+          <img src="https://loremflickr.com/600/450/pedicure,feet?lock=66" alt="Pedicure" loading="lazy">
+        </div>
+        <div class="service-body">
+          <h3>Pedicure</h3>
+          <p>Kompleksowa pielęgnacja stóp — od klasyki, przez peeling, po zabiegi na pękające pięty.</p>
+          <ul>
+            <li><span>Pedicure klasyczny</span><span>110 zł</span></li>
+            <li><span>Pedicure z hybrydą</span><span>140 zł</span></li>
+            <li><span>Pedicure japoński</span><span>130 zł</span></li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="section alt" id="dlaczego">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="ornament"><span></span><i></i><span></span></div>
+      <div class="eyebrow">Dlaczego my</div>
+      <h2>Co nas wyróżnia</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal"><div class="num">1</div><h3>Indywidualne podejście</h3><p>Każdy zabieg dopasowujemy do stanu paznokci i Twoich oczekiwań.</p></div>
+      <div class="why-card reveal"><div class="num">2</div><h3>Pielęgnacja pod skórkami</h3><p>Dokładność, której nie widać od razu, ale czuć efekt na długo.</p></div>
+      <div class="why-card reveal"><div class="num">3</div><h3>Klasyczne wzornictwo</h3><p>Elegancja i precyzja zamiast przelotnych trendów.</p></div>
+      <div class="why-card reveal"><div class="num">4</div><h3>Szeroka paleta kolorów</h3><p>Ponad 200 odcieni hybryd i lakieży klasycznych do wyboru.</p></div>
+      <div class="why-card reveal"><div class="num">5</div><h3>Pełna pielęgnacja</h3><p>Dłonie i stopy w jednym miejscu — bez kompromisów w jakości.</p></div>
+      <div class="why-card reveal"><div class="num">6</div><h3>Spokojna atmosfera</h3><p>Jedno stanowisko na raz — czas tylko dla Ciebie.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="opinie">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="ornament"><span></span><i></i><span></span></div>
+      <div class="eyebrow">Opinie</div>
+      <h2>Co mówią nasze klientki</h2>
+      <p>Najlepszą reklamą jest zadowolenie osób, które już nas odwiedziły.</p>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card reveal">
+        <div class="testi-quote">"</div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">Manicure hybrydowy trzyma u mnie bez odrostów ponad 3 tygodnie. Precyzja przy skórkach jest naprawdę na najwyższym poziomie.</p>
+        <div class="testi-name">Agnieszka K.<span>Klientka od 2 lat</span></div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="testi-quote">"</div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">Pierwszy raz zdecydowałam się na manicure japoński — paznokcie wyglądają zdrowo, naturalnie i w końcu się nie łamią.</p>
+        <div class="testi-name">Marta W.<span>Klientka od 8 miesięcy</span></div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="testi-quote">"</div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">Spokojna, elegancka atmosfera i zawsze punktualnie. Polecam też pedicure — efekt utrzymuje się naprawdę długo.</p>
+        <div class="testi-name">Katarzyna P.<span>Klientka od 3 lat</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="galeria">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="ornament"><span></span><i></i><span></span></div>
+      <div class="eyebrow">Galeria</div>
+      <h2>Nasze realizacje</h2>
+      <p>Zajrzyj na Instagram, żeby zobaczyć więcej inspiracji #paznokciewarszawa</p>
+    </div>
+    <div class="gallery-grid">
+      <div class="g1">💅</div><div class="g2">✨</div><div class="g3">🌸</div><div class="g4">🦋</div>
+      <div class="g5">💎</div><div class="g6">🎀</div><div class="g7">🌷</div><div class="g8">⭐</div>
+    </div>
+  </div>
+</section>
+
+<section class="section alt" id="cennik">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="ornament"><span></span><i></i><span></span></div>
+      <div class="eyebrow">Cennik</div>
+      <h2>Najpopularniejsze zabiegi</h2>
+    </div>
+    <table class="price-table">
+      <thead>
+        <tr><th>Usługa</th><th>Czas</th><th>Cena</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Manicure klasyczny</td><td>40 min</td><td>50 zł</td></tr>
+        <tr><td>Manicure hybrydowy</td><td>75 min</td><td>90 zł</td></tr>
+        <tr><td>Manicure japoński</td><td>60 min</td><td>110 zł</td></tr>
+        <tr><td>Manicure żelowy — przedłużanie</td><td>120 min</td><td>160 zł</td></tr>
+        <tr><td>Pedicure klasyczny</td><td>60 min</td><td>110 zł</td></tr>
+        <tr><td>Pedicure z hybrydą</td><td>90 min</td><td>140 zł</td></tr>
+      </tbody>
+    </table>
+    <p class="price-note">Pełen cennik dostępny telefonicznie i w salonie. Ceny mogą się różnić w zależności od stanu paznokci.</p>
+  </div>
+</section>
+
+<section class="section" id="kontakt">
+  <div class="wrap">
+    <div class="cta-banner">
+      <h2>Zarezerwuj swoją wizytę już dziś</h2>
+      <p>Zadzwoń, napisz lub umów się online — odpowiemy najszybciej jak możemy.</p>
+      <a href="tel:+48726363077" class="btn btn-light">Zadzwoń: 726 363 077</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <h4>Atelier Aurum</h4>
+        <p>ul. Kwiatowa 12, 00-001 Warszawa<br>ok. 100 m od stacji metra Centrum</p>
+        <p>726 363 077<br>kontakt@atelieraurum.pl</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Facebook">f</a>
+          <a href="#" aria-label="Instagram">ig</a>
+        </div>
+      </div>
+      <div>
+        <h4>Godziny otwarcia</h4>
+        <p>Poniedziałek: 10–18<br>Wtorek–Piątek: 10–20<br>Sobota: 8–15<br>Niedziela: zamknięte</p>
+      </div>
+      <div>
+        <h4>Szybkie linki</h4>
+        <p>
+          <a href="#oferta">Oferta</a><br>
+          <a href="#opinie">Opinie</a><br>
+          <a href="#cennik">Cennik</a><br>
+          <a href="#galeria">Galeria</a><br>
+          <a href="#kontakt">Kontakt</a>
+        </p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2026 Atelier Aurum. Wszelkie prawa zastrzeżone. · Polityka prywatności
+    </div>
+  </div>
+</footer>
+
+<script>
+  const burger = document.getElementById('burgerBtn');
+  const panel = document.getElementById('mobilePanel');
+  const backdrop = document.getElementById('navBackdrop');
+  const panelClose = document.getElementById('panelClose');
+  const header = document.querySelector('header');
+
+  function closeMenu(){
+    panel.classList.remove('open');
+    backdrop.classList.remove('open');
+    burger.classList.remove('active');
+    burger.setAttribute('aria-expanded', 'false');
+  }
+  burger.addEventListener('click', () => {
+    const open = panel.classList.toggle('open');
+    backdrop.classList.toggle('open', open);
+    burger.classList.toggle('active', open);
+    burger.setAttribute('aria-expanded', open);
+  });
+  backdrop.addEventListener('click', closeMenu);
+  panelClose.addEventListener('click', closeMenu);
+  panel.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('in-view');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: .15 });
+  document.querySelectorAll('.reveal').forEach((el, i) => {
+    el.style.transitionDelay = (i % 3) * 0.08 + 's';
+    revealObserver.observe(el);
+  });
+
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 10);
+  });
+
+  const navAnchors = document.querySelectorAll('.nav-links a, .mobile-panel a');
+  const sections = [...navAnchors].map(a => document.querySelector(a.getAttribute('href')));
+  const setActive = () => {
+    let current = sections[0];
+    sections.forEach(sec => {
+      if(sec && window.scrollY >= sec.offsetTop - 140) current = sec;
+    });
+    navAnchors.forEach(a => {
+      a.classList.toggle('active', document.querySelector(a.getAttribute('href')) === current);
+    });
+  };
+  window.addEventListener('scroll', setActive);
+  setActive();
+</script>
+
+</body>
+</html>
